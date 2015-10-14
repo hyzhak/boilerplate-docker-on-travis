@@ -17,7 +17,7 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 # create dockers
-  - docker build -t node:4
+#  - docker build -t node:4
 
 script:
-  - npm run build
+  - npm test
