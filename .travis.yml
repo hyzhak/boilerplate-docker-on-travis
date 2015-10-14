@@ -9,15 +9,12 @@ services:
 
 before_install:
   - docker -v
-  - node -v
-  - gcc -v
-  - npm install
 # install docker compose
   - curl -L https://github.com/docker/compose/releases/download/1.4.0/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 # create dockers
-#  - docker build -t node:4
+  - docker build -t hyzhak/node-test-app --file=Dockerfile-node .
 
 script:
-  - npm test
+  - docker run hyzhak/node-test-app /bin/sh -c "npm test"

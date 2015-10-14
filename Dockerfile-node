@@ -1,6 +1,11 @@
 FROM node:4-onbuild
 
+COPY /test /test
+COPY /package.json /package.json
+
 RUN npm install
 
 # replace this with your application's default port
 EXPOSE 8888
+
+# CMD ["npm", "test"]
