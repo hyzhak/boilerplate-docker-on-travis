@@ -4,3 +4,5 @@ COPY /test /test
 COPY /package.json ./
 
 RUN npm install
+
+ENTRYPOINT ["npm"]
