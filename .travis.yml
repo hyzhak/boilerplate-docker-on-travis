@@ -17,4 +17,4 @@ before_install:
   - docker build -t hyzhak/node-test-app --file=Dockerfile-node .
 
 script:
-  - docker run hyzhak/node-test-app /bin/sh -c "npm test"
+  - docker run hyzhak/node-test-app test
