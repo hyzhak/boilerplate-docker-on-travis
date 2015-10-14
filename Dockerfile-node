@@ -1,6 +1,7 @@
 FROM node:4-onbuild
 
-COPY /test /package.json .
+COPY /test /test
+COPY /package.json ./
 
 RUN npm install
 
