@@ -9,14 +9,11 @@ services:
 
 before_install:
   - docker -v
+  - docker-compose -v
 # install docker compose
   - curl -L https://github.com/docker/compose/releases/download/1.4.0/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
-# create dockers
-  - docker build -t hyzhak/node-test-app --file=Dockerfile-node .
-  - docker build -t hyzhak/python-test-app --file=Dockerfile-python .
 
 script:
-  - docker run hyzhak/node-test-app test
-  - docker run hyzhak/python-test-app test
+  - docker-compose -f docker-compose-test.yml up

@@ -1,0 +1,9 @@
+python:
+  build: .
+  dockerfile: Dockerfile-python
+  command: test
+
+node:
+  build: .
+  dockerfile: Dockerfile-node
+  command: test
