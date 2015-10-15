@@ -6,5 +6,9 @@ describe('Array', function() {
       assert.equal(-1, [1,2,3].indexOf(5));
       assert.equal(-1, [1,2,3].indexOf(0));
     });
+
+    it('should fail', function() {
+      assert.equal(true, false);
+    });
   });
 });
