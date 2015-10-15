@@ -1,0 +1,12 @@
+FROM python:3.4
+
+COPY ./requirements.txt .
+COPY ./py ./py
+
+# Update the default application repository sources list
+RUN apt-get update
+RUN apt-get install -y libmemcached-dev
+
+RUN pip --default-timeout=60 install -r requirements.txt
+
+ENTRYPOINT ["python", "./py/helloworld.py"]
