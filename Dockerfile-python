@@ -7,6 +7,6 @@ COPY ./py ./py
 RUN apt-get update
 RUN apt-get install -y libmemcached-dev
 
-RUN pip --default-timeout=60 install -r requirements.txt
+RUN pip --default-timeout=60 install -q -r requirements.txt
 
 ENTRYPOINT ["python", "./py/helloworld.py"]
