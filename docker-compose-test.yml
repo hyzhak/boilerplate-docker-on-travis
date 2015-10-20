@@ -1,15 +1,18 @@
+elastic:
+  image: elasticsearch
+
 python:
   build: .
   dockerfile: Dockerfile-python
 #  command: test
   links:
    - elastic
+   - memcached
+
+memcached:
+  image: memcached
 
 node:
   build: .
   dockerfile: Dockerfile-node
   command: test
-
-elastic:
-  image: elasticsearch
-

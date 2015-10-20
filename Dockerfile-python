@@ -11,4 +11,4 @@ RUN apt-get install -y libmemcached-dev
 
 RUN pip --default-timeout=60 install -q -r requirements.txt
 
-ENTRYPOINT ["nosetests", "test_elastic_connection.py"]
+ENTRYPOINT ["nosetests", "test_connections.py"]
