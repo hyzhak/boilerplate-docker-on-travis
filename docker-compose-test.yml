@@ -1,9 +1,15 @@
 python:
   build: .
   dockerfile: Dockerfile-python
-  command: test
+#  command: test
+  links:
+   - elastic
 
 node:
   build: .
   dockerfile: Dockerfile-node
   command: test
+
+elastic:
+  image: elasticsearch
+
