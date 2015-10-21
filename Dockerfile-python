@@ -5,9 +5,8 @@ COPY ./py ~/app/
 
 WORKDIR ~/app
 
-# Update the default application repository sources list
-RUN apt-get update
-RUN apt-get install -y libmemcached-dev
+RUN apt-get update && \
+    apt-get install -y libmemcached-dev
 
 RUN pip --default-timeout=60 install -q -r requirements.txt
 

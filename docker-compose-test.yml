@@ -8,6 +8,7 @@ python:
   links:
    - elastic
    - memcached
+   - postgres
 
 memcached:
   image: memcached
@@ -16,3 +17,6 @@ node:
   build: .
   dockerfile: Dockerfile-node
   command: test
+
+postgres:
+  image: postgres

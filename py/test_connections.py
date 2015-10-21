@@ -2,6 +2,7 @@ from datetime import datetime
 from elasticsearch import Elasticsearch
 from memcache import Client, SERVER_MAX_KEY_LENGTH, SERVER_MAX_VALUE_LENGTH
 import os
+import psycopg2
 import unittest
 
 
@@ -35,3 +36,16 @@ class TestMemcache(unittest.TestCase):
         self.assertEqual(newval, 'some random string')
 
         mc.disconnect_all()
+
+    def test_postgres_connection(self):
+        print('POSTGRES_PORT_5432_TCP_ADDR')
+        print(os.environ.get('POSTGRES_PORT_5432_TCP_ADDR'))
+        print('POSTGRES_PORT_5432_TCP_PORT')
+        print(os.environ.get('POSTGRES_PORT_5432_TCP_PORT'))
+        conn = psycopg2.connect(host=os.environ.get('POSTGRES_PORT_5432_TCP_ADDR'),
+                                user="postgres",
+                                password="secret",
+                                port=os.environ.get('POSTGRES_PORT_5432_TCP_PORT'))
+        self.assertEqual(conn.closed, False)
+        conn.close()
+        self.assertEqual(conn.closed, True)
