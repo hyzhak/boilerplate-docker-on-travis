@@ -3,11 +3,15 @@ from elasticsearch import Elasticsearch
 from memcache import Client, SERVER_MAX_KEY_LENGTH, SERVER_MAX_VALUE_LENGTH
 import os
 import psycopg2
+from time import sleep
 import unittest
 
 
 class TestMemcache(unittest.TestCase):
     def test_elastic_connection(self):
+        # wait until elastic will start
+        sleep(8)
+
         print('ELASTIC_PORT_9200_TCP_ADDR')
         print(os.environ.get('ELASTIC_PORT_9200_TCP_ADDR'))
         print('ELASTIC_PORT_9200_TCP_PORT')
