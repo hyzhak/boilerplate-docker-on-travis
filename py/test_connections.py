@@ -1,3 +1,4 @@
+from amqp import Connection
 from datetime import datetime
 from elasticsearch import Elasticsearch
 from memcache import Client, SERVER_MAX_KEY_LENGTH, SERVER_MAX_VALUE_LENGTH
@@ -49,3 +50,16 @@ class TestMemcache(unittest.TestCase):
         self.assertEqual(conn.closed, False)
         conn.close()
         self.assertEqual(conn.closed, True)
+
+    def test_rabbitmq_conection(self):
+        print('RABBITMQ_PORT_5672_TCP_ADDR')
+        print(os.environ.get('RABBITMQ_PORT_5672_TCP_ADDR'))
+        print('RABBITMQ_PORT_5672_TCP_PORT')
+        print(os.environ.get('RABBITMQ_PORT_5672_TCP_PORT'))
+        # BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+        conn = Connection(host='{}:{}'.format(
+            os.environ.get('RABBITMQ_PORT_5672_TCP_ADDR'),
+            os.environ.get('RABBITMQ_PORT_5672_TCP_PORT')))
+        self.assertIsNotNone(conn.connection)
+        conn.close()
+        self.assertIsNone(conn.connection)
