@@ -63,3 +63,8 @@ class TestMemcache(unittest.TestCase):
         self.assertIsNotNone(conn.connection)
         conn.close()
         self.assertIsNone(conn.connection)
+
+    def test_volume_connection(self):
+        print('os.listdir("/webapp")')
+        print(os.listdir("/webapp"))
+        self.assertTrue('hello.world.txt' in os.listdir("/webapp"))

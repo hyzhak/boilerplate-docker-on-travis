@@ -1,9 +1,14 @@
 FROM node:4
 
-COPY /test /test
-COPY /package.json ./
+RUN mkdir /webapp
+
+WORKDIR /webapp
+
+COPY test test
+COPY package.json ./
 
 RUN npm install
 
+VOLUME /webapp
+
 ENTRYPOINT ["npm"]
-CMD ["run", "build"]

@@ -1,26 +1,28 @@
 elastic:
   image: elasticsearch:1.6
 
-python:
-  build: .
-  dockerfile: Dockerfile-python
-#  command: test
-  links:
-   - elastic
-   - memcached
-   - postgres
-   - rabbitmq
-
 memcached:
   image: memcached
 
 node:
   build: .
   dockerfile: Dockerfile-node
-  command: test
+  command: run build
 
 postgres:
-  image: postgres
+  build: ./postgres
+
+python:
+  build: .
+  dockerfile: Dockerfile-python
+  links:
+   - elastic
+   - node
+   - memcached
+   - postgres
+   - rabbitmq
+  volumes_from:
+   - node
 
 rabbitmq:
   image: rabbitmq
